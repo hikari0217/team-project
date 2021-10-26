@@ -1,7 +1,7 @@
 import time
-from Crawler.get_proxy import GetProxy
-from Crawler.test_proxy import TestIp
-from MongoDB.mongo_db import MongoDB
+from get_proxy import GetProxy
+from test_proxy import TestIp
+from ..MongoDB.mongo_db import MongoDB
 from multiprocessing import Process
 
 

@@ -1,6 +1,5 @@
 from scrapy_redis.spiders import RedisSpider
-from team_project.items import TeamProjectItem
-from lxml import etree
+from ..items import TeamProjectItem
 
 
 class TestSpider(RedisSpider):

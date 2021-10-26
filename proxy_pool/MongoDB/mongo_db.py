@@ -56,5 +56,3 @@ class MongoDB():
 if __name__ == '__main__':
     mongodb = MongoDB()
     print(mongodb.get(3))
-
-# db.proxies.find().sort("delay", pymongo.ASCENDING)
