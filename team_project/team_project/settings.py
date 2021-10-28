@@ -9,6 +9,11 @@ NEWSPIDER_MODULE = 'team_project.spiders'
 USER_AGENT = 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'
 
 
+
+DOWNLOADER_MIDDLEWARES = {
+   'team_project.middlewares.RandomProxyMiddleware': 543,
+}
+
 ROBOTSTXT_OBEY = False
 
 

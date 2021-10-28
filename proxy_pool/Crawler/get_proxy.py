@@ -141,7 +141,6 @@ class GetProxy():
     def other_proxy(self):
         headers = {"User-Agent": random.choice(user_agents)}
         url = 'http://proxylist.fatezero.org/proxy.list'
-        proxy_list = list()
         r = requests.get(url, headers=headers)
         if r.raise_for_status() is None:
             # print(r.text)
@@ -151,8 +150,10 @@ class GetProxy():
             for i in range(len(data) - 1):
                 ip = json.loads(data[i])['host']
                 port = json.loads(data[i])['port']
+                ip_type = json.loads(data[i])['type']
                 proxy = str(ip) + ":" + str(port)
-                proxy = {"proxy": proxy}  # 返回的代理是字典的格式，方便直接存储到mongodb数据库中
+                proxy = {"proxy": proxy, "type": ip_type}  # 返回的代理是字典的格式，方便直接存储到mongodb数据库中
+                print(proxy)
                 yield proxy
 
 

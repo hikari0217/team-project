@@ -1,7 +1,7 @@
 import requests
 import time
 from requests.exceptions import ProxyError, ConnectionError
-from ..MongoDB.mongo_db import MongoDB
+from proxy_pool.MongoDB.mongo_db import MongoDB
 from multiprocessing.pool import ThreadPool
 
 

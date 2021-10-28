@@ -21,6 +21,26 @@ def get_one():
     # 返回json格式的类似字典的字符串
     return json.dumps(dict(proxy=result[x]))
 
+# 从数据库中获取一个ip代理
+@app.route('/one/http')
+def get_one_http():
+    proxies = mongo_db.MongoDB().get_all()
+    print(len(proxies))
+    result = [proxy['proxy'] for proxy in proxies]
+    x = random.randint(0, mongo_db.MongoDB().get_count() - 1)
+    # 返回json格式的类似字典的字符串
+    return json.dumps(dict(proxy=result[x]))
+
+# 从数据库中获取一个ip代理
+@app.route('/one/https')
+def get_one_https():
+    proxies = mongo_db.MongoDB().get_all()
+    print(len(proxies))
+    result = [proxy['proxy'] for proxy in proxies]
+    x = random.randint(0, mongo_db.MongoDB().get_count() - 1)
+    # 返回json格式的类似字典的字符串
+    return json.dumps(dict(proxy=result[x]))
+
 
 # 从数据库中获取所有的ip代理
 @app.route('/all')

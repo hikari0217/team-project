@@ -101,3 +101,30 @@ class TeamProjectDownloaderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+#######
+import requests
+import json
+
+PROXY_POOL_URL = 'http://127.0.0.1:5000/one'
+
+
+class RandomProxyMiddleware(object):
+    # 动态设置ip代理
+
+    def process_request(self, request, spider):
+        h = request.url.split(':')[0]
+        if h == 'https':
+            proxy = requests.get(PROXY_POOL_URL + "/https").text
+            print(proxy)
+            if proxy is not None:
+                ip = json.loads(proxy)['proxy']
+                request.meta["proxy"] = 'https://' + str(ip)
+                print(str(ip))
+        else:
+            proxy = requests.get(PROXY_POOL_URL + "/http").text
+            if proxy is not None:
+                ip = json.loads(proxy)['proxy']
+                request.meta["proxy"] = 'http://' + str(ip)
+                print(str(ip))

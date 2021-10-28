@@ -1,5 +1,5 @@
 from multiprocessing import Process
-from Crawler.check_crawl_ip import CheckIp, CrawlIp
+from proxy_pool.Crawler.check_crawl_ip import CheckIp, CrawlIp
 from api import run
 
 

@@ -37,8 +37,18 @@ class MongoDB():
         conditions = conditions if conditions else {}
         count = int(count)
         items = self.proxies.find(conditions)  # conditions=None,即默认查找所有的proxies集合下所有的文档
-        # 取出数据，按delay进行排序，延时小的放在列表前面，用的时候可以先拿出来
-        # items = self.proxies.find(conditions, limit=count).sort("delay", pymongo.ASCENDING)
+        items = list(items)
+        return items
+
+    # 取出所有http类型的数据，count是check_crawl_ip获取到的ip代理数量
+    def get_http(self):
+        items = self.proxies.find({'type': 'http'})
+        items = list(items)
+        return items
+
+    # 取出所有https类型的数据，count是check_crawl_ip获取到的ip代理数量
+    def get_https(self):
+        items = self.proxies.find({'type': 'http'})
         items = list(items)
         return items
 
@@ -55,4 +65,4 @@ class MongoDB():
 
 if __name__ == '__main__':
     mongodb = MongoDB()
-    print(mongodb.get(3))
+    print(mongodb.get_http())
